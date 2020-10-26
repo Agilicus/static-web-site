@@ -18,5 +18,7 @@ func main() {
 
 	// Serve the contents over HTTP.
 	http.Handle("/", http.StripPrefix("/", http.FileServer(statikFS)))
-	http.ListenAndServe(":8080", handlers.LoggingHandler(os.Stdout, http.DefaultServeMux))
+        handler := handlers.LoggingHandler(os.Stdout, http.DefaultServeMux)
+        handler = handlers.ProxyHeaders(handler)
+	http.ListenAndServe(":8080", handler)
 }
