@@ -3,8 +3,10 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
-	_ "./statik"
+        _ "git.agilicus.com/open-source/static-web-site/statik"
+	"github.com/gorilla/handlers"
 	"github.com/rakyll/statik/fs"
 )
 
@@ -16,5 +18,5 @@ func main() {
 
 	// Serve the contents over HTTP.
 	http.Handle("/", http.StripPrefix("/", http.FileServer(statikFS)))
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", handlers.LoggingHandler(os.Stdout, http.DefaultServeMux))
 }
