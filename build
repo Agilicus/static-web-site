@@ -1,4 +1,4 @@
 #!/bin/bash
 which statik || go get github.com/rakyll/statik
-statik -src=assets
+statik -f -src=assets
 go build
