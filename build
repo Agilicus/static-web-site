@@ -2,3 +2,4 @@
 which statik || go get github.com/rakyll/statik
 statik -f -src=assets
 go build
+env GOOS=windows go build
