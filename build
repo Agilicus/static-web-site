@@ -1,5 +1,5 @@
 #!/bin/bash
 which statik || go get github.com/rakyll/statik
 statik -f -src=assets
-go build
+CGO_ENABLED=0 go build
 env GOOS=windows go build
